@@ -6,22 +6,22 @@ from flask import (
     jsonify,
     request,
     redirect)
-from flask_sqlalchemy import SQLAlchemy
-from .models import Pet
 
 #################################################
 # Flask Setup
 #################################################
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
-
 #################################################
 # Database Setup
 #################################################
 
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '') or "sqlite:///db.sqlite"
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '')
 db = SQLAlchemy(app)
+
+from .models import Pet
 
 
 # create route that renders index.html template
